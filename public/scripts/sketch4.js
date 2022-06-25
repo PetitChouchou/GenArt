@@ -3,7 +3,7 @@
 * Inspired by Tyler Hobbs' essay "How to Hack a Painting": https://tylerxhobbs.com/essays/2020/how-to-hack-a-painting
 * The goal here is to start with a regular polygon, and then jut out the edges fractally according to some
 * kind of randomness.
-* I did not make it to watercolor nth recursion, but I did get a decently random jutted ngon that I think can build on in the future. 
+* I did not make it to watercolor nth recursion, but I did get a decently random jutted ngon that I think can build on in the future.
 *
 *
 */
@@ -95,7 +95,6 @@ function draw_regular_ngon(n, cx, cy, r) {
     vertex(x_i, y_i);
   }
   endShape(CLOSE);
-
 }
 
 function draw_polygon(polygon) {
@@ -112,7 +111,7 @@ function draw_polygon(polygon) {
 */
 function generate_regular_ngon(n, cx, cy, r) {
   polygon = [];
-  for (i = 0; i < vertices; i++) {
+  for (i = 0; i < n; i++) {
     theta_i = 2 * PI * (i / vertices) - .5 * PI;
     x_i = cx + r * cos(theta_i);
     y_i = cy + r * sin(theta_i);
@@ -121,5 +120,4 @@ function generate_regular_ngon(n, cx, cy, r) {
   }
 
   return polygon;
-
 }
