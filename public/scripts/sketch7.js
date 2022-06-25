@@ -23,18 +23,18 @@ var PALLATE = [
 const POLYGON_SIDES = 7;
 
 // Higher means more recursions means more details. Set it to zero to just get a polygon.
-const MAX_DEPTH = 25;
+const MAX_DEPTH = 8;
 
 // The ratio of mean to standard deviation for our program. This is kept consistent for
 // all Gaussian distributions in the program. This is a divisor, so set it larger for
-// less variance, and lower for more variance. Setting this low makes the blob much bigger and
-// much less symmetric.
-const COEFFICIENT_OF_VARIATION = 5;
+// less variance, and lower for more variance. Setting this low makes the blob
+// much less symmetric. Set to an extremely large number to get perfect symmetry / no randomness.
+const COEFFICIENT_OF_VARIATION = 20;
 
 // The jut length's mean and standard deviation are calculated as a factor
 // of the length of the segment that it juts from. this is the denominator, so set
 // it higher to make the blob small.
-const JUT_FACTOR = 2;
+const JUT_FACTOR = 5;
 
 function setup() {
   createCanvas(700, 700);
@@ -69,7 +69,7 @@ function recursive_jut(polygon, depth = 0) {
 
 function jut_polygon(polygon) {
   let jutted_polygon = [];
-  for (let i = 0; i < polygon.length; i+=2) {
+  for (let i = 0; i < polygon.length; i++) {
     let v0 = polygon[i];
 
     if (i == (polygon.length - 1)) {
@@ -107,8 +107,8 @@ function split_line(line_points) {
 
   // Select a random point along the segment. TODO: Change this to Gaussian.
   let midpoint_x = (x2 + x1) / 2;
-  // let rand_x = randomGaussian(midpoint_x, midpoint_x / (COEFFICIENT_OF_VARIATION / 10));
-  let rand_x = random() * (max_x - min_x) + min_x;
+  let var_x = midpoint_x / COEFFICIENT_OF_VARIATION;
+  let rand_x = randomGaussianFloorCeiling(midpoint_x, var_x, min_x, max_x);
   let rand_y = slope * rand_x + intercept;
 
   // Select a random angle.
@@ -119,11 +119,11 @@ function split_line(line_points) {
   // that as arctan. Then our range of acceptable angles goes from -PI/2 to +PI/2 range from that angle.
 
   // Center our angle jut around perpendicular. We also don't want variations (outliers okay) greater
-  // than 90 degrees, so our std deviation should at most be PI/6
+  // than 90 degrees, so use the floor ceiling function.
   const ANGLE_MEAN_PERP = atan(-1 * 1/slope );
   const ANGLE_STD = abs(ANGLE_MEAN_PERP) / COEFFICIENT_OF_VARIATION;
 
-  random_angle = randomGaussian(ANGLE_MEAN_PERP, ANGLE_STD);
+  let random_angle = randomGaussianFloorCeiling(ANGLE_MEAN_PERP, ANGLE_STD, ANGLE_MEAN_PERP-PI/2, ANGLE_MEAN_PERP + PI/2);
 
   if (y1 > y2) {
     random_angle -= PI;
@@ -135,12 +135,35 @@ function split_line(line_points) {
   const DIST_MEAN = segment_length / JUT_FACTOR;
   const DIST_STD = DIST_MEAN / COEFFICIENT_OF_VARIATION;
 
-  let distance = randomGaussian(DIST_MEAN, DIST_STD);
+  let distance = randomGaussianFloorCeiling(DIST_MEAN, DIST_STD, 0);
 
   let jut_x = rand_x + distance * cos(random_angle);
   let jut_y = rand_y + distance * sin(random_angle);
 
   return [ [x1, y1], [jut_x, jut_y], [x2, y2] ];
+}
+
+/*
+* Returns a random Gaussian according to the usual mean and standard deviation, but
+* also allows optional floor and ceiling arguments. If the generated value is greater
+* than ceiling, or less than floor, it replaces it with those respective values. Just
+* a useful function to have.
+*
+* This is in Camel Case cause it's kinda like a library function. I might even go through
+* and collect these.
+*/
+function randomGaussianFloorCeiling(mean, std, floor="NONE", ceil="NONE") {
+  val = randomGaussian(mean, std);
+
+  if (floor != "NONE" && val < float(floor)) {
+    return floor;
+  }
+
+  if (ceil != "NONE" && val > float(ceil)) {
+    return ceil;
+  }
+
+  return val;
 }
 
 function generate_regular_ngon(n, cx, cy, r) {
