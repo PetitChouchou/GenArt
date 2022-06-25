@@ -1,7 +1,13 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
 
-block content
-  h1= title
-  p Welcome to #{title}
+    h1= title
+    p Welcome to #{title}
 
-  script(src="/scripts/sketch4.js")
+    section
+      p This is a page where I'm experimenting with <a href=https://p5js.org target="_blank">Processing</a>. I'm not sure what my long term goal is, but I like throwing up quick and dirty sketches of ideas I have. A lot of the inspiration comes from mimicking things that <a href="https://tylerxhobbs.com" target="_blank">Tyler Hobbes</a> has been able to do.
+      p <a href="sketch/7">View an example</a>
