@@ -1,5 +1,5 @@
 // Sketch 3: Flowing Circles.
-// Circles that flow across the screen. 
+// Circles that flow across the screen.
 // Motivating statement: My goal here is to mess around with circle drawing. I
 // want to see if i can find some kind of clever way to put a draw a bunch of circles.
 
@@ -16,9 +16,12 @@ function draw() {
 
   let offset = 5;
 
-  // Lets make a bunch of runners.
-  for (i = 0; i < 150; i++) {
-    horizontal_runner(50, i * offset, i * offset, 100);
+
+  for (y_offset = -1000; y_offset <= 1000; y_offset += 75) {
+    // Lets make a bunch of runners.
+    for (i = 0; i < 150; i++) {
+      horizontal_runner(50, i * offset, i * offset + y_offset, 100);
+    }
   }
 }
 
