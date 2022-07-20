@@ -27,7 +27,7 @@ const MAX_NUM_LINES = 25;
 // DIAGONAL
 // QUADRATIC
 // CIRCLE
-const MODE = "CIRCLE";
+const MODE = "VERTICAL";
 
 // Number of frames long to make an animation.
 const ANIMATION_LENGTH = 200;
