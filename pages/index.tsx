@@ -1,7 +1,17 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
+import React from 'react'
+import Sketch from 'react-p5'
+import dynamic from 'next/dynamic'
+import p5Types from "p5";
 
 const inter = Inter({ subsets: ['latin'] })
+
+const SketchComponent = dynamic(
+  () => import("../sketches/sketch1"),
+  { ssr: false }
+)
+
 
 export default function Home() {
   return (
@@ -14,6 +24,7 @@ export default function Home() {
       </Head>
       <main>
         <div>Welcome to my generative sketches</div>
+        <SketchComponent></SketchComponent>
       </main>
     </>
   )
