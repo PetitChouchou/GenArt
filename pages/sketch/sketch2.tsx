@@ -5,7 +5,7 @@ var x = 20;
 var [x1, y1, x2, y2, x3, y3] = [200, 200, 200, 300, 250, 360];
 
 var portion = .01;
-export default function Sketch1 () {
+export default function Sketch2 () {
   return (
     <main>
       <SketchPage title="sketch2" setup={setup} draw={draw} />
