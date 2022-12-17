@@ -12,7 +12,7 @@ export default function Sketch1 () {
 
 // A demo that creates a canvas and follows the demo on https://p5js.org/get-started/.
 const setup = (p5: p5Types, canvasParentRef: Element) => {
-  p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef);
+  p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
 }
 
 const draw = (p5: p5Types) => {

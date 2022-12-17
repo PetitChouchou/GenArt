@@ -22,7 +22,7 @@ export default function Sketch8() {
 const CANVAS_SIZE = 720;
 
 const setup = (p5: p5Types, canvasParentRef: Element) => {
-  p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef);
+  p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
   p5.colorMode("HSB", 360, 100, 100);
   p5.background(PALLATE[0]);
 }

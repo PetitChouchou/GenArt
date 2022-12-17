@@ -16,7 +16,7 @@ export default function Sketch2 () {
 
 // Working With Shapes: Experimenting with different shapes.
 const setup = (p5: p5Types, canvasParentRef: Element) => {
-  p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef);
+  p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
 }
 
 const draw = (p5: p5Types) => {

@@ -16,7 +16,7 @@ export default function Sketch5() {
 *
 **/
 const setup = (p5: p5Types, canvasParentRef: Element) => {
-  p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef);
+  p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
 }
 
 function draw(p5:p5Types) {
@@ -41,10 +41,10 @@ function draw(p5:p5Types) {
       p5.stroke(31,26,14,alpha);
 
 
-      const top_coord = p5.displayHeight * (j / NUM_ROWS) - (length / 2);
-      const bottom = p5.displayHeight * (j / NUM_ROWS) + (length / 2);
+      const top_coord = p5.windowHeight * (j / NUM_ROWS) - (length / 2);
+      const bottom = p5.windowHeight * (j / NUM_ROWS) + (length / 2);
 
-      const x = p5.displayWidth * (i / NUM_COLS);
+      const x = p5.windowWidth * (i / NUM_COLS);
 
       console.log(x + "," + bottom + "," + top_coord);
       p5.line(x, bottom, x, top_coord);

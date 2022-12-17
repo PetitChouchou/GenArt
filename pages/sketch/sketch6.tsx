@@ -30,11 +30,11 @@ function getRandomInt(max: number): number {
 
 
 const setup = (p5: p5Types, canvasParentRef: Element) => {
-  p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef);
+  p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
 }
 
 function draw(p5: p5Types) {
-  p5.background(PALLATE[2]);
+  p5.background(PALLATE[0]);
   p5.noLoop();
 
   // So the problem here is that the shape functions I've been working with have

@@ -49,7 +49,7 @@ let select_point2 = true;
 const HITBOX_SIZE = 20;
 
 const setup = (p5: p5Types, canvasParentRef: Element) => {
-  const cnv = p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef)
+  const cnv = p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef)
   p5.background(PALLATE[0]);
 
   button = p5.createButton("Pen Tool");

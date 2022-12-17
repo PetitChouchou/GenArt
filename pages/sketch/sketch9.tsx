@@ -35,7 +35,7 @@ const MODE: AnimationMode = "Quadratic";
 const ANIMATION_LENGTH = 200;
 
 const setup = (p5: p5Types, canvasParentRef: Element) => {
-  p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef);
+  p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
 }
 
 function draw(p5: p5Types) {
