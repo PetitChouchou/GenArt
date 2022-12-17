@@ -1,8 +1,7 @@
 import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
-import { Coord, Polygon } from "../../utils/shapes";
-import { draw_polygon, generate_regular_ngon } from "../../utils/utils";
 import { PALLATE } from "../../utils/colors";
+import { AnimationMode } from "../../utils/animation";
 
 export default function Sketch9() {
   return (
@@ -26,14 +25,13 @@ const CANVAS_SIZE = 720;
 
 const MAX_NUM_LINES = 25;
 
-type Mode = "Horizontal" | "Vertical" | "Diagonal" | "Quadratic" | "Circle"
 // Possible Animation Modes:
 // HORIZONTAL
 // VERTICAL
 // DIAGONAL
 // QUADRATIC
 // CIRCLE
-const MODE: Mode = "Quadratic";
+const MODE: AnimationMode = "Quadratic";
 
 // Number of frames long to make an animation.
 const ANIMATION_LENGTH = 200;
