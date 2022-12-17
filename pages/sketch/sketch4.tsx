@@ -104,8 +104,8 @@ function draw_regular_ngon(p5: p5Types, n: number, cx: number, cy: number, r: nu
   p5.beginShape();
   for (let i = 0; i < VERTICES; i++) {
     const theta_i = 2 * p5.PI * (i / VERTICES) - .5 * p5.PI;
-    const x_i = cx + r * cos(theta_i);
-    const y_i = cy + r * sin(theta_i);
+    const x_i = cx + r * p5.cos(theta_i);
+    const y_i = cy + r * p5.sin(theta_i);
     p5.vertex(x_i, y_i);
   }
   p5.endShape("close");
