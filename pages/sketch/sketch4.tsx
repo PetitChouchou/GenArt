@@ -1,5 +1,7 @@
 import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
+import { Coord, Polygon } from "../../utils/shapes";
+import { draw_polygon } from "../../utils/utils";
 
 export default function Sketch4() {
   return (
@@ -108,17 +110,6 @@ function draw_regular_ngon(p5: p5Types, n: number, cx: number, cy: number, r: nu
   }
   p5.endShape("close");
 }
-
-function draw_polygon(p5: p5Types, polygon: Polygon) {
-  p5.beginShape();
-  polygon.forEach(coord => {
-    p5.vertex(coord[0], coord[1]);
-  });
-  p5.endShape("close");
-}
-
-type Polygon = Array<Coord>
-type Coord = [number, number]
 
 /*
 * Does the same as draw draw_regular_ngon, except instead of drawing the n gon, it

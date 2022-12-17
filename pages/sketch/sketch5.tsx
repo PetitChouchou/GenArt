@@ -1,5 +1,6 @@
 import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
+import { Polygon, Quadrants, Rect, Shape, Triangle } from "../../utils/shapes";
 
 export default function Sketch5() {
   return (

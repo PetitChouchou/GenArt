@@ -1,5 +1,7 @@
 import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
+import { Quadrants, Rect, Shape, Triangle } from "../../utils/shapes";
+import { draw_polygon } from "../../utils/utils";
 
 export default function Sketch6() {
   return (
@@ -100,13 +102,6 @@ function recursive_breakup(shapes: Array<Shape>, depth=0): Array<Shape> {
 
 }
 
-type Coord = [number, number]
-type Rect = [Coord, Coord, Coord, Coord]
-type Triangle = [Coord, Coord, Coord]
-type Shape = Rect | Triangle
-type Quadrants = [Rect, Rect, Rect, Rect]
-type Polygon = Array<Coord>
-
 /**
 * IMPORTANT: RECTANGLES MUST GO FROM UPPER LEFT TO UPPER RIGHT TO LOWER RIGHT TO LOWER LEFT.
 * THIS IS CLOCKWISE ORDER.
@@ -163,10 +158,3 @@ function breakup_shape(shape: Shape): Array<Shape> {
   return [shape]
 }
 
-function draw_polygon(p5: p5Types, polygon: Polygon) {
-  p5.beginShape();
-  polygon.forEach(coord => {
-    p5.vertex(coord[0], coord[1]);
-  });
-  p5.endShape("close");
-}
