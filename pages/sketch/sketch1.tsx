@@ -25,9 +25,7 @@ export default function Sketch1 () {
   return (
   <main>
     <div>welcome to the app</div>
-    {(typeof window !== undefined) &&
       <Sketch setup={setup} draw={draw} />
-    })
   </main>
   )
 };
