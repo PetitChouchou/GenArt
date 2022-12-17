@@ -1,6 +1,6 @@
 import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
-import { Coord, Polygon, Quadrants, Rect, Shape, Triangle } from "../../utils/shapes";
+import { Coord, Polygon } from "../../utils/shapes";
 import { draw_polygon, generate_regular_ngon } from "../../utils/utils";
 
 export default function Sketch7() {
