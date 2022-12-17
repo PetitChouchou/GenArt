@@ -12,7 +12,7 @@ export interface SketchPageProps {
 export default function SketchPage(props: SketchPageProps) {
   return (
     <main>
-      <div>{props.title}</div>
+      <div className="absolute">{props.title}</div>
       <Sketch setup={props.setup} draw={props.draw} />
     </main>
   )
