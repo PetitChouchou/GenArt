@@ -1,7 +1,6 @@
 import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
-import { Coord, Polygon } from "../../utils/shapes";
-import { draw_polygon, generate_regular_ngon } from "../../utils/utils";
+import { PALLATE } from "../../utils/colors";
 
 export default function Sketch8() {
   return (
@@ -20,16 +19,6 @@ export default function Sketch8() {
 * Pretty boring but simple enough, and it's good to go.
 *
 */
-
-// PALLATE: https://www.color-hex.com/color-palette/68787
-var PALLATE = [
-  "rgb(255,240,203)",
-  "rgb(167,186,66)",
-  "rgb(149,204,186)",
-  "rgb(255,222,222)",
-  "rgb(242,204,132)",
-  ];
-
 const CANVAS_SIZE = 720;
 
 const setup = (p5: p5Types, canvasParentRef: Element) => {
@@ -44,8 +33,8 @@ function draw(p5: p5Types) {
   const RECT_SIZE_MAX = 200;
   const RECT_SIZE_MIN = 20;
 
-  let rect_size = RECT_SIZE_MIN + (RECT_SIZE_MAX - RECT_SIZE_MIN) * (p5.mouseY / CANVAS_SIZE);
-  let prect_size = RECT_SIZE_MIN + (RECT_SIZE_MAX - RECT_SIZE_MIN) * (p5.pmouseY / CANVAS_SIZE);
+  const rect_size = RECT_SIZE_MIN + (RECT_SIZE_MAX - RECT_SIZE_MIN) * (p5.mouseY / CANVAS_SIZE);
+  const prect_size = RECT_SIZE_MIN + (RECT_SIZE_MAX - RECT_SIZE_MIN) * (p5.pmouseY / CANVAS_SIZE);
 
   // let hue = floor(mousex / 2);
 

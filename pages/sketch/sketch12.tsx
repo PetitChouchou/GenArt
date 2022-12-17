@@ -78,11 +78,11 @@ function circle_fitter(p5: p5Types, diameter: number, circles: Array<Circle>) {
     let failure = false;
 
     for (let i = 0; i < circles.length; i++) {
-      let c = circles[i];
+      const c = circles[i];
 
-      let x1 = c[0];
-      let y1 = c[1];
-      let d1 = c[2];
+      const x1 = c[0];
+      const y1 = c[1];
+      const d1 = c[2];
 
       // If any overlap, this is a failure.
       if (circles_overlap(p5, x1, y1, d1, x, y, diameter)) {
@@ -106,18 +106,18 @@ function circle_fitter(p5: p5Types, diameter: number, circles: Array<Circle>) {
 
 function draw_circles(p5: p5Types, circles: Array<Circle>) {
   for (let i = 0; i < circles.length; i++) {
-    let c = circles[i];
-    let x = c[0];
-    let y = c[1];
-    let d = c[2];
+    const c = circles[i];
+    const x = c[0];
+    const y = c[1];
+    const d = c[2];
     dottify_circle(p5, x, y, d);
   }
 }
 
 function circles_overlap(p5: p5Types, x1: number, y1: number, d1: number, x2: number, y2: number, d2: number) {
   const dist = p5.sqrt((x2-x1)**2 + (y2-y1)**2);
-  let r1 = d1 / 2;
-  let r2 = d2 / 2;
+  const r1 = d1 / 2;
+  const r2 = d2 / 2;
 
   return dist <= (r1 + r2);
 }
@@ -127,9 +127,9 @@ function circles_overlap(p5: p5Types, x1: number, y1: number, d1: number, x2: nu
 function dottify_circle(p5: p5Types, x: number, y: number, diameter: number) {
   // I like the look of 2000 dots for a diameter of 100. It should go down at a quadratic rate
   // (by area) to the ratio of 2000 dots for a 100 radius. So eg diameter 50 gives 1/4 as many dots.
-  let r = diameter / 2;
+  const r = diameter / 2;
 
-  let num_circles = ((diameter / 100) ** 2) * 3000
+  const num_circles = ((diameter / 100) ** 2) * 3000
 
   for (let i = 0; i < num_circles; i++) {
     const rand_x = p5.randomGaussian(x, r / 2.5);
@@ -144,10 +144,10 @@ function dottify_circle(p5: p5Types, x: number, y: number, diameter: number) {
 async function render_sketch(p5: p5Types): Promise<void> {
   return new Promise<void>(function(resolve, reject){
     let circles: Circle[] = [];
-    let diameters = [500, 100, 50, 20];
+    const diameters = [500, 100, 50, 20];
 
     for (let i = 0; i < diameters.length; i++) {
-      let d = diameters[i];
+      const d = diameters[i];
       circles = circles.concat(circle_fitter(p5, d, circles));
     }
 

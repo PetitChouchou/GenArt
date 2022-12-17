@@ -2,6 +2,7 @@ import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
 import { Coord, Polygon } from "../../utils/shapes";
 import { draw_polygon, generate_regular_ngon } from "../../utils/utils";
+import { PALLATE } from "../../utils/colors";
 
 export default function Sketch7() {
   return (
@@ -21,14 +22,6 @@ export default function Sketch7() {
 *
 * PALLATE: https://www.color-hex.com/color-palette/68787
 **/
-
-var PALLATE = [
-  "rgb(167,186,66)",
-  "rgb(149,204,186)",
-  "rgb(255,222,222)",
-  "rgb(255,240,203)",
-  "rgb(242,204,132)",
-  ];
 
 // PARAMETER TUNING
 
@@ -81,18 +74,18 @@ function recursive_jut(p5: p5Types, polygon: Polygon, depth = 0): Polygon {
 }
 
 function jut_polygon(p5: p5Types, polygon: Polygon): Polygon {
-  let jutted_polygon: Polygon = [];
+  const jutted_polygon: Polygon = [];
   for (let i = 0; i < polygon.length; i++) {
-    let v0 = polygon[i];
+    const v0 = polygon[i];
 
     if (i == (polygon.length - 1)) {
-      let v1 = polygon[0];
+      const v1 = polygon[0];
       // We have to slice off the end to avoid double pushing our start of our polygon.
-      let result = split_line(p5, [v0, v1]).slice(0, -1);
+      const result = split_line(p5, [v0, v1]).slice(0, -1);
 
       jutted_polygon.push(...result);
     } else {
-      let v1 = polygon[i + 1];
+      const v1 = polygon[i + 1];
 
       jutted_polygon.push(...split_line(p5, [v0, v1]));
 
@@ -109,20 +102,20 @@ function jut_polygon(p5: p5Types, polygon: Polygon): Polygon {
 * point that goes outward between the points.
 */
 function split_line(p5: p5Types, line_points: [Coord, Coord]): Polygon {
-  let [x1, y1] = line_points[0];
-  let [x2, y2] = line_points[1];
+  const [x1, y1] = line_points[0];
+  const [x2, y2] = line_points[1];
 
-  let slope = (y2 - y1) / (x2 - x1);
-  let intercept = y2 - slope * x2;
+  const slope = (y2 - y1) / (x2 - x1);
+  const intercept = y2 - slope * x2;
 
-  let max_x = p5.max(x1, x2);
-  let min_x = p5.min(x1, x2);
+  const max_x = p5.max(x1, x2);
+  const min_x = p5.min(x1, x2);
 
   // Select a random point along the segment. TODO: Change this to Gaussian.
-  let midpoint_x = (x2 + x1) / 2;
-  let var_x = midpoint_x / COEFFICIENT_OF_VARIATION;
-  let rand_x = randomGaussianFloorCeiling(p5, midpoint_x, var_x, min_x, max_x);
-  let rand_y = slope * rand_x + intercept;
+  const midpoint_x = (x2 + x1) / 2;
+  const var_x = midpoint_x / COEFFICIENT_OF_VARIATION;
+  const rand_x = randomGaussianFloorCeiling(p5, midpoint_x, var_x, min_x, max_x);
+  const rand_y = slope * rand_x + intercept;
 
   // Select a random angle.
   // tan(angle) is the slope. So how do we only select an angle that's going to go
@@ -148,10 +141,10 @@ function split_line(p5: p5Types, line_points: [Coord, Coord]): Polygon {
   const DIST_MEAN = segment_length / JUT_FACTOR;
   const DIST_STD = DIST_MEAN / COEFFICIENT_OF_VARIATION;
 
-  let distance = randomGaussianFloorCeiling(p5, DIST_MEAN, DIST_STD, 0);
+  const distance = randomGaussianFloorCeiling(p5, DIST_MEAN, DIST_STD, 0);
 
-  let jut_x = rand_x + distance * p5.cos(random_angle);
-  let jut_y = rand_y + distance * p5.sin(random_angle);
+  const jut_x = rand_x + distance * p5.cos(random_angle);
+  const jut_y = rand_y + distance * p5.sin(random_angle);
 
   return [ [x1, y1], [jut_x, jut_y], [x2, y2] ];
 }

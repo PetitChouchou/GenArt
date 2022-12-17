@@ -50,9 +50,9 @@ function draw(p5: p5Types) {
   // The trickiest thing seems to be mapping our T value into the useful part of the
   // parametric curve. For a function f(x) that's easy, we just map t to the expected bounds
   // of X aka 0 to width. Visa verse for a function f(y);
-  let t = p5.frameCount % ANIMATION_LENGTH;
-  let param_x = p5.map(t, 0, ANIMATION_LENGTH, 0, p5.width);
-  let param_y = p5.map(t, 0, ANIMATION_LENGTH, 0, p5.height);
+  const t = p5.frameCount % ANIMATION_LENGTH;
+  const param_x = p5.map(t, 0, ANIMATION_LENGTH, 0, p5.width);
+  const param_y = p5.map(t, 0, ANIMATION_LENGTH, 0, p5.height);
 
 
   // Linear: horizontal.
@@ -66,7 +66,7 @@ function draw(p5: p5Types) {
     y_pos = param_y;
   }
 
-  let slope = .5;
+  const slope = .5;
   // Diagonal at a slope.
   if (MODE == "Diagonal") {
     x_pos = param_x;

@@ -57,9 +57,9 @@ function draw(p5: p5Types) {
   let x_pos = p5.mouseX;
   let y_pos = p5.mouseY;
 
-  let t = p5.frameCount % ANIMATION_LENGTH;
-  let param_x = p5.map(t, 0, ANIMATION_LENGTH, 0, p5.width);
-  let param_y = p5.map(t, 0, ANIMATION_LENGTH, 0, p5.height);
+  const t = p5.frameCount % ANIMATION_LENGTH;
+  const param_x = p5.map(t, 0, ANIMATION_LENGTH, 0, p5.width);
+  const param_y = p5.map(t, 0, ANIMATION_LENGTH, 0, p5.height);
 
 
   // Linear: horizontal.
@@ -73,7 +73,7 @@ function draw(p5: p5Types) {
     y_pos = param_y;
   }
 
-  let slope = .5;
+  const slope = .5;
   // Diagonal at a slope.
   if (MODE == "Diagonal") {
     x_pos = param_x;
@@ -90,16 +90,16 @@ function draw(p5: p5Types) {
     y_pos = 100 * p5.sin(param_circle) + p5.width/2;
   }
 
-  let num_lines = p5.map(x_pos, 0, p5.width, 1, MAX_NUM_LINES);
+  const num_lines = p5.map(x_pos, 0, p5.width, 1, MAX_NUM_LINES);
 
-  let line_length = p5.map(y_pos, 0, p5.height, 20, 200);
+  const line_length = p5.map(y_pos, 0, p5.height, 20, 200);
 
 
   p5.beginShape();
   p5.fill(PALLATE[3]);
   p5.noFill();
   for (let i = 0; i <= num_lines; i++) {
-    let angle = i * 2 * p5.PI / num_lines;
+    const angle = i * 2 * p5.PI / num_lines;
 
     p5.line(0, 0, line_length * p5.cos(angle), line_length * p5.sin(angle));
     // vertex(line_length * cos(angle), line_length * sin(angle));

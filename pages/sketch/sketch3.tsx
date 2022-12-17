@@ -25,7 +25,7 @@ function draw(p5: p5Types) {
 
   p5.stroke(230, 25, 76);
 
-  let offset = 5;
+  const offset = 5;
 
 
   for (let y_offset = -1000; y_offset <= 1000; y_offset += 75) {
@@ -54,7 +54,7 @@ function horizontal_runner(p5: p5Types, circle_width: number, x_start: number, y
   // We have frameCount constantly incrementing. What i want is to turn that into
   // a value for each of the ellipses. So what if we did: 0-> 25.
 
-  let fragment = (p5.frameCount % flow_rate) / flow_rate;
+  const fragment = (p5.frameCount % flow_rate) / flow_rate;
 
   const arc_x = x_start + circle_width * (Math.floor(p5.frameCount / flow_rate));
   const arc_y = y_start + 50;
@@ -75,10 +75,10 @@ function horizontal_runner(p5: p5Types, circle_width: number, x_start: number, y
 
   // Do the same for the previous, "descending" arc.
   if ( Math.floor(p5.frameCount / flow_rate) >= 1) {
-    let prev_arc_x = x_start + circle_width * (Math.floor(p5.frameCount / flow_rate) - 1);
-    let prev_arc_y = y_start + 50;
+    const prev_arc_x = x_start + circle_width * (Math.floor(p5.frameCount / flow_rate) - 1);
+    const prev_arc_y = y_start + 50;
 
-    let prev_arc_down = (Math.floor(p5.frameCount / flow_rate)) % 2;
+    const prev_arc_down = (Math.floor(p5.frameCount / flow_rate)) % 2;
 
     let prev_arc_start = 0;
     let prev_arc_stop = 2 * p5.PI;

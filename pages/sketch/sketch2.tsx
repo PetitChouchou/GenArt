@@ -1,10 +1,11 @@
 import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
 
-var x = 20;
-var [x1, y1, x2, y2, x3, y3] = [200, 200, 200, 300, 250, 360];
+let x = 20;
+let [x1, x2, y2] = [200, 200, 300];
+const [y1, x3, y3] = [200, 250, 360]
 
-var portion = .01;
+let portion = .01;
 export default function Sketch2 () {
   return (
     <main>

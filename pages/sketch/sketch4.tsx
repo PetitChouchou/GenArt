@@ -34,9 +34,9 @@ function draw(p5: p5Types) {
   // Our first step here is to draw a regular N-gon with a given center coordinate. That
   // might end up being real easy or real tricky.
 
-  let cx = 150;
-  let cy = 150;
-  let r = 50;
+  const cx = 150;
+  const cy = 150;
+  const r = 50;
 
   p5.noStroke();
   p5.fill(183, 112, 230);
@@ -61,7 +61,7 @@ function draw(p5: p5Types) {
 }
 
 function jut_deform_polygon(p5: p5Types, polygon: Polygon): Polygon {
-  let jut_poly: Polygon = [];
+  const jut_poly: Polygon = [];
 
   // So we distorted it by two virables: the first the distance between the first vertex and the jut, and
   // the second the angle made between that line and the next line in the triangle. this makes a mediocre jut.
@@ -116,7 +116,7 @@ function draw_regular_ngon(p5: p5Types, n: number, cx: number, cy: number, r: nu
 * returns a list of the vertices.
 */
 function generate_regular_ngon(p5: p5Types, n: number, cx: number, cy: number, r: number): Polygon {
-  let polygon: Array<Coord> = []
+  const polygon: Array<Coord> = []
   for (let i = 0; i < n; i++) {
     const theta_i = 2 * p5.PI * (i / VERTICES) - .5 * p5.PI;
     const x_i = cx + r * p5.cos(theta_i);

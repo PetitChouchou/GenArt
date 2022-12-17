@@ -2,6 +2,7 @@ import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
 import { Quadrants, Rect, Shape, Triangle } from "../../utils/shapes";
 import { draw_polygon } from "../../utils/utils";
+import { PALLATE } from "../../utils/colors";
 
 export default function Sketch6() {
   return (
@@ -22,13 +23,6 @@ export default function Sketch6() {
 **/
 
 const MAX_DEPTH = 3;
-var PALLATE = [
-  "rgb(217,227,217)",
-  "rgb(124,154,166)",
-  "rgb(245,225,175)",
-  "rgb(176,99,49)",
-  "rgb(138,131,121)",
-  ];
 
 function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
@@ -80,18 +74,18 @@ function recursive_breakup(shapes: Array<Shape>, depth=0): Array<Shape> {
     return shapes;
   }
 
-  let ret_shapes = [];
+  const ret_shapes = [];
 
   // Note: I had a problem with not putting "let" in front of my variables. Apparantly
   // then it does it by function scope, which in a recursive function seems to blend with
   // its subproblems. No good!
   for (let i = 0; i < shapes.length; i++) {
-    let shape = shapes[i];
+    const shape = shapes[i];
 
     if (Math.random() < .7) {
-      let broken_up = breakup_shape(shape);
+      const broken_up = breakup_shape(shape);
 
-      let rec_broken_up = recursive_breakup(broken_up, depth + 1);
+      const rec_broken_up = recursive_breakup(broken_up, depth + 1);
       ret_shapes.push(...rec_broken_up);
     } else {
       ret_shapes.push(shape);
@@ -109,19 +103,19 @@ function recursive_breakup(shapes: Array<Shape>, depth=0): Array<Shape> {
 * Returns: A list of 4 Polygons, each of them rectangles.
 **/
 function split_rect_quadrants(rect: Rect): Quadrants {
-  let low_x = rect[0][0];
-  let high_x = rect[1][0];
-  let low_y = rect[0][1];
-  let high_y = rect[2][1];
+  const low_x = rect[0][0];
+  const high_x = rect[1][0];
+  const low_y = rect[0][1];
+  const high_y = rect[2][1];
 
-  let half_x = (high_x+low_x) / 2
-  let half_y = (high_y+low_y) / 2
+  const half_x = (high_x+low_x) / 2
+  const half_y = (high_y+low_y) / 2
 
   // Starts at the first coord, has half the width and height
-  let quad0: Rect = [ [low_x, low_y], [half_x, low_y], [half_x, half_y], [low_x, half_y] ];
-  let quad1: Rect = [ [half_x, low_y], [high_x, low_y], [high_x, half_y], [half_x, half_y] ];
-  let quad2: Rect = [ [half_x, half_y], [high_x, half_y], [high_x, high_y], [half_x, high_y] ];
-  let quad3: Rect = [ [low_x, half_y], [half_x, half_y], [half_x, high_y], [low_x, high_y] ];
+  const quad0: Rect = [ [low_x, low_y], [half_x, low_y], [half_x, half_y], [low_x, half_y] ];
+  const quad1: Rect = [ [half_x, low_y], [high_x, low_y], [high_x, half_y], [half_x, half_y] ];
+  const quad2: Rect = [ [half_x, half_y], [high_x, half_y], [high_x, high_y], [half_x, high_y] ];
+  const quad3: Rect = [ [low_x, half_y], [half_x, half_y], [half_x, high_y], [low_x, high_y] ];
 
   return [quad0, quad1, quad2, quad3]
 

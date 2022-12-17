@@ -1,7 +1,6 @@
 import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
 import { PALLATE } from "../../utils/colors";
-import { AnimationMode } from "../../utils/animation";
 import { Coord } from "../../utils/shapes";
 
 export default function Sketch11() {
