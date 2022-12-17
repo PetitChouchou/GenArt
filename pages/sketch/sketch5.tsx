@@ -9,7 +9,6 @@ export default function Sketch5() {
   )
 }
 
-
 /**
 * Sketch 5: Texture
 * My intention with this was to make it like grass, but what I ended up with was something
