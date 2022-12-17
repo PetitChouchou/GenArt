@@ -1,4 +1,11 @@
+import React from "react";
+import Sketch from "react-p5";
+
 // Working With Shapes: Experimenting with different shapes.
+
+export default function Sketch2 (props) {
+	return <Sketch setup={setup} draw={draw} />;
+};
 
 function setup() {
   createCanvas(800, 800);
