@@ -53,7 +53,7 @@ function draw(p5: p5Types) {
   render_sketch(p5)
   if (render_state === "Not Started") {
     render_state = "Rendering"
-    render_sketch(p5).then((res)=> {
+    render_sketch(p5).then(()=> {
       console.log("Finished rendering")
       render_state = "Rendered"
       p5.noLoop()
@@ -142,7 +142,7 @@ function dottify_circle(p5: p5Types, x: number, y: number, diameter: number) {
 // main thread with this otherwise it's gonna be brutal.
 // Each circle is of form [x, y, d]
 async function render_sketch(p5: p5Types): Promise<void> {
-  return new Promise<void>(function(resolve, reject){
+  return new Promise<void>(function(resolve){
     let circles: Circle[] = [];
     const diameters = [500, 100, 50, 20];
 

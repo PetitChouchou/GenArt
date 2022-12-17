@@ -1,13 +1,7 @@
 import Head from 'next/head'
-import { Inter } from '@next/font/google'
 import React from 'react'
-import Sketch from 'react-p5'
 import dynamic from 'next/dynamic'
-import p5Types from "p5";
 
-const inter = Inter({ subsets: ['latin'] })
-
-const varae = "./sketch/sketch1"
 const SketchComponent = dynamic(
   () => import("./sketch/sketch1"),
   { ssr: false }

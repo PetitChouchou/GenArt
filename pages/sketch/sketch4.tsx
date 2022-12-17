@@ -20,7 +20,6 @@ export default function Sketch4() {
 *
 *
 */
-
 const setup = (p5: p5Types, canvasParentRef: Element) => {
   p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef);
   p5.frameRate(1);
@@ -34,9 +33,9 @@ function draw(p5: p5Types) {
   // Our first step here is to draw a regular N-gon with a given center coordinate. That
   // might end up being real easy or real tricky.
 
-  const cx = 150;
-  const cy = 150;
-  const r = 50;
+  // const cx = 150;
+  // const cy = 150;
+  // const r = 50;
 
   p5.noStroke();
   p5.fill(183, 112, 230);
@@ -74,7 +73,6 @@ function jut_deform_polygon(p5: p5Types, polygon: Polygon): Polygon {
 
   for (let i = 0; i < polygon.length - 1; i++) {
     const coord = polygon[i];
-    const next_coord = polygon[i+1];
 
     const rand_angle = Math.random() * (ANGLE_MAX - ANGLE_MIN) + ANGLE_MIN;
     const rand_dist = Math.random() * (DIST_MAX - DIST_MIN) + DIST_MIN;
@@ -100,16 +98,16 @@ function jut_deform_polygon(p5: p5Types, polygon: Polygon): Polygon {
 * r: The radius of the polygon, the distance from the center to a vertex.
 *
 */
-function draw_regular_ngon(p5: p5Types, n: number, cx: number, cy: number, r: number) {
-  p5.beginShape();
-  for (let i = 0; i < VERTICES; i++) {
-    const theta_i = 2 * p5.PI * (i / VERTICES) - .5 * p5.PI;
-    const x_i = cx + r * p5.cos(theta_i);
-    const y_i = cy + r * p5.sin(theta_i);
-    p5.vertex(x_i, y_i);
-  }
-  p5.endShape("close");
-}
+// function draw_regular_ngon(p5: p5Types, n: number, cx: number, cy: number, r: number) {
+//   p5.beginShape();
+//   for (let i = 0; i < VERTICES; i++) {
+//     const theta_i = 2 * p5.PI * (i / VERTICES) - .5 * p5.PI;
+//     const x_i = cx + r * p5.cos(theta_i);
+//     const y_i = cy + r * p5.sin(theta_i);
+//     p5.vertex(x_i, y_i);
+//   }
+//   p5.endShape("close");
+// }
 
 /*
 * Does the same as draw draw_regular_ngon, except instead of drawing the n gon, it

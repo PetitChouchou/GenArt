@@ -25,9 +25,6 @@ const MODE: AnimationMode = "Quadratic";
 // Number of frames long to make an animation.
 const ANIMATION_LENGTH = 200;
 
-
-const CANVAS_SIZE = 720;
-
 const setup = (p5: p5Types, canvasParentRef: Element) => {
   p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef)
   p5.background(PALLATE[0]);

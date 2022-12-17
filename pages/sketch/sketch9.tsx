@@ -21,8 +21,6 @@ export default function Sketch9() {
 * to the center of the image. And 2.
 */
 
-const CANVAS_SIZE = 720;
-
 const MAX_NUM_LINES = 25;
 
 // Possible Animation Modes:

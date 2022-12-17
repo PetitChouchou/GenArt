@@ -11,7 +11,6 @@ export default function Sketch11() {
   )
 }
 
-
 /*
 * Sketch 11: Catmull-Rom Splines
 *
@@ -106,7 +105,7 @@ function onClick(p5: p5Types) {
 // boolean will be set to true and it will be as if you clicked on the xy coordinates of the
 // button to move the point there. No good. That's why this toggle function runs on
 // release, while the global event happens on mouse press.
-function toggle_pen(p5: p5Types) {
+function toggle_pen() {
   pen_toggled = !pen_toggled;
   if (pen_toggled) {
     button.style('background-color', 'gray');
