@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Head from "next/head";
 import p5Types from "p5";
 
 const Sketch = dynamic(() => import('react-p5'), { ssr: false });
@@ -11,9 +12,14 @@ export interface SketchPageProps {
 
 export default function SketchPage(props: SketchPageProps) {
   return (
+    <>
+    <Head>
+      <title>{props.title}</title>
+    </Head>
     <main>
       <div className="absolute">{props.title}</div>
       <Sketch setup={props.setup} draw={props.draw} />
     </main>
+    </>
   )
 }

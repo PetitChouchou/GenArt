@@ -15,7 +15,7 @@ export default function Sketch3() {
 // want to see if i can find some kind of clever way to put a draw a bunch of circles.
 
 const setup = (p5: p5Types, canvasParentRef: Element) => {
-  p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef);
+  p5.createCanvas(800, 800).parent(canvasParentRef);
 }
 
 function draw(p5: p5Types) {
