@@ -7,8 +7,9 @@ import p5Types from "p5";
 
 const inter = Inter({ subsets: ['latin'] })
 
+const varae = "./sketch/sketch1"
 const SketchComponent = dynamic(
-  () => import("../sketches/sketch1"),
+  () => import("./sketch/sketch1"),
   { ssr: false }
 )
 
