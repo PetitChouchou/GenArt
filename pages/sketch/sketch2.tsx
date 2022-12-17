@@ -1,26 +1,28 @@
-import React from "react";
-import Sketch from "react-p5";
-
-// Working With Shapes: Experimenting with different shapes.
-
-export default function Sketch2 (props) {
-	return <Sketch setup={setup} draw={draw} />;
-};
-
-function setup() {
-  createCanvas(800, 800);
-}
+import p5Types from "p5";
+import SketchPage from "../../components/SketchPage";
 
 var x = 20;
 var [x1, y1, x2, y2, x3, y3] = [200, 200, 200, 300, 250, 360];
 
-portion = .01;
+var portion = .01;
+export default function Sketch1 () {
+  return (
+    <main>
+      <SketchPage title="sketch2" setup={setup} draw={draw} />
+    </main>
+  )
+}
 
-function draw() {
-  gridOutput();
-  background(89, 255, 188);
-  fill(148, 70, 55);
-  ellipse(x, 20, 40, 20);
+// Working With Shapes: Experimenting with different shapes.
+const setup = (p5: p5Types, canvasParentRef: Element) => {
+  p5.createCanvas(p5.displayWidth, p5.displayHeight).parent(canvasParentRef);
+}
+
+const draw = (p5: p5Types) => {
+  p5.gridOutput();
+  p5.background(89, 255, 188);
+  p5.fill(148, 70, 55);
+  p5.ellipse(x, 20, 40, 20);
 
   // Linear movement at a specified rate.
   // What other movement function could I do?
@@ -30,8 +32,8 @@ function draw() {
   x =  x * 1.05;
 
   // DRAW A FULL CIRCLE
-  noFill();
-  arc(100, 100, 80, 80, 0, 2 * PI * portion);
+  p5.noFill();
+  p5.arc(100, 100, 80, 80, 0, 2 * p5.PI * portion);
 
   // Linear Draw vs Exponential draw
   portion += .01;
@@ -50,7 +52,7 @@ function draw() {
   // Idea: Make each of the three vertices the result of a function, and draw the triangle.
 
 
-  triangle(x1, y1, x2, y2, x3, y3)
+  p5.triangle(x1, y1, x2, y2, x3, y3)
 
   // Point 1: Linear movement horizontally
   x1 += .1;
@@ -62,6 +64,4 @@ function draw() {
   console.log(x1)
 
   // Point 3: Fixed
-
-
 }
