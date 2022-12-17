@@ -5,7 +5,7 @@ export default function Sketch1 () {
   return (
   <main>
     <div>sketch1 baby</div>
-    <SketchPage setup={setup} draw={draw} />
+    <SketchPage title="sketch1" setup={setup} draw={draw} />
   </main>
   )
 }
