@@ -1,8 +1,7 @@
 import p5Types from "p5";
 import SketchPage from "../../components/SketchPage";
 import { PALLATE } from "../../utils/colors";
-import { AnimationMode } from "../../utils/animation";
-import { Circle, Coord } from "../../utils/shapes";
+import { Circle } from "../../utils/shapes";
 
 export default function Sketch12() {
   return (
@@ -33,8 +32,35 @@ async function setup (p5: p5Types, canvasParentRef: Element): Promise<void> {
   p5.background(PALLATE[0]);
   p5.textSize(32)
   p5.fill(PALLATE[2])
-  p5.text('wait as we load please...', 300, 300)
+  p5.text(friendly_loading_messages[friendly_loading_messages_idx], 300, 300)
+  setInterval(() => {
+    console.log("here we are in the interval")
+    friendly_loading_messages_idx += 1
+  }, 500)
+}
 
+const friendly_loading_messages = ['loading up the sketch...', 'it takes a lot of work to calculate this by hand', 'almost there i swear to you', 'its like snow white and the seven dwarves in these computer graphics mines', 'okay this is taking longer than expected', 'maybe if we keep going we\'ll strike gold', 'okay it really shouldnt be taking *this* long', 'like seriously its been more than 10 seconds now', 'somethings wrong, please contact me at: ponde.me/contact']
+let friendly_loading_messages_idx = 0
+
+function draw(p5: p5Types) {
+  console.log(friendly_loading_messages.length)
+  if (friendly_loading_messages_idx < friendly_loading_messages.length) {
+    console.log(friendly_loading_messages[friendly_loading_messages_idx])
+    const friend_y_offset = 50 * friendly_loading_messages_idx
+    p5.text(friendly_loading_messages[friendly_loading_messages_idx], 300, 300 + friend_y_offset)
+  }
+
+  render_sketch(p5)
+  if (render_state === "Not Started") {
+    render_state = "Rendering"
+    render_sketch(p5).then((res)=> {
+      console.log("Finished rendering")
+      render_state = "Rendered"
+      p5.noLoop()
+      // just in case
+      friendly_loading_messages_idx = friendly_loading_messages.length
+    })
+  }
 }
 
 
@@ -131,16 +157,4 @@ async function render_sketch(p5: p5Types): Promise<void> {
 
     resolve()
   })
-}
-
-function draw(p5: p5Types) {
-  p5.noLoop();
-
-  if (render_state === "Not Started") {
-    render_state = "Rendering"
-    render_sketch(p5).then((res)=> {
-      console.log("Finished rendering")
-      render_state = "Rendered"
-    })
-  }
 }
